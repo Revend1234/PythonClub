@@ -7,7 +7,7 @@ class Meeting(models.Model):
     meetingdate=models.DateField()
     meetingtime=models.SmallIntegerField()
     location=models.TextField()
-    agenda=models.Charfield(max_length=255)
+    agenda=models.CharField(max_length=255)
 
     def __str__(self):
         return self.meetingtitle
@@ -57,5 +57,5 @@ class Event(models.Model):
         return self.resourcename
     
     class Meta:
-        db_table='resource'
-        verbose_name_plural='resources'         
+        db_table='event'
+        verbose_name_plural='events'         
