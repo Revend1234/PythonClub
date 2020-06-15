@@ -75,3 +75,12 @@ class EventTest(TestCase):
 
    def test_table(self):
        self.assertEqual(str(event._meta.db_table), 'Events')
+
+class MeetingFormTest(TestCase):
+    def setup(self):
+       title = MeetingFormTest(titlename='Schedule')
+       meeting=Meeting(meetinglocation='room 3201', meetingtitle=title, meetingtime='1:30')
+       return meeting
+
+   def test_table(self):
+       self.assertEqual(str(meeting._meta.db_table), 'Meetings')
