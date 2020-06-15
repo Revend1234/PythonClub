@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Meeting, MeetingMinutes, Resource, Event
+from .forms import MeetingForm
 # Create your views here.
 def index (request):
     return render(request, 'templates/club/index.html')
@@ -18,3 +19,27 @@ def getmeetings(request):
         'meet' : meet,
     }
     return render(request, 'templates/club/meetdetails.html', context=context)
+
+def newMeeting(request):
+     form=MeetingForm
+     if request.method=='POST':
+          form=MeetingForm(request.POST)
+          if form.is_valid():
+               post=form.save(commit=True)
+               post.save()
+               form=MeetingForm()
+     else:
+          form=MeetingForm()
+     return render(request, 'templates/club/newmeeting.html', {'form': form})
+
+def newResource(request):
+     form=ResourceForm
+     if request.method=='POST':
+          form=ResourceForm(request.POST)
+          if form.is_valid():
+               post=form.save(commit=True)
+               post.save()
+               form=ResourceForm()
+     else:
+          form=ResourceForm()
+     return render(request, 'templates/club/newresource.html', {'form': form})
